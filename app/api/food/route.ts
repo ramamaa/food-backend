@@ -1,9 +1,20 @@
 import { NextRequest, NextResponse } from "next/server";
 import { uploadImageToCloudinary } from "@/lib/utils/uploadImage";
 import { FoodType } from "@/lib/utils/types";
+import { foodMenu } from "./data";
 
 export async function GET() {
-  return Response.json({ data: "Hello from Food" });
+  const response = NextResponse.json({ data: foodMenu }, { status: 200 });
+  response.headers.set("Access-Control-Allow-Origin", "*"); // Or '*' for all origins
+  response.headers.set(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PUT, DELETE, OPTIONS"
+  );
+  response.headers.set(
+    "Access-Control-Allow-Headers",
+    "Content-Type, Authorization"
+  );
+  return response;
 }
 
 export async function POST(request: NextRequest) {
