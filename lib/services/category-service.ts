@@ -12,3 +12,10 @@ export const getAllCategories = async () => {
   await connectDB();
   return await Category.find();
 };
+
+export const deleteCategory = async (name: string) => {
+  await connectDB();
+  const newCategory = new Category({ name });
+  await newCategory.save();
+  return newCategory;
+};
