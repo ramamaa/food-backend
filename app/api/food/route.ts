@@ -3,10 +3,9 @@ import { uploadImageToCloudinary } from "@/lib/utils/uploadImage";
 import { FoodType } from "@/lib/utils/types";
 import { createFood, getAllFood } from "@/lib/services/food-service";
 
-
 export async function GET() {
   const foodMenu = await getAllFood();
-  const response = NextResponse.json({ data: foodMenu}, { status: 200 });
+  const response = NextResponse.json({ data: foodMenu }, { status: 200 });
   response.headers.set("Access-Control-Allow-Origin", "*"); // Or '*' for all origins
   response.headers.set(
     "Access-Control-Allow-Methods",
@@ -66,10 +65,12 @@ export async function POST(request: NextRequest) {
       category,
       image: imageUrl,
     };
-    await createFood(foodData)
+    await createFood(foodData);
     console.log("Final Food Data:", foodData);
 
-    // Return success response
+    // Return success r
+    //
+
     return NextResponse.json(
       {
         success: true,
