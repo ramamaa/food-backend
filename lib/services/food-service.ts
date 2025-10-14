@@ -2,11 +2,17 @@ import connectDB from "../mongodb";
 
 import { Food } from "../models/Food";
 
-export const createFood = async (foodData:{name:string, ingredients:string, price:number, image:string}) => {
+export const createFood = async (foodData: {
+  name: string;
+  ingredients: string;
+  price: number;
+  image: string;
+  categoryId: string;
+}) => {
   await connectDB();
-  const newFood = new Food ({ ...foodData });
+  const newFood = new Food({ ...foodData });
   await newFood.save();
-  return newFood;
+  return true;
 };
 
 export const getAllFood = async () => {
@@ -14,9 +20,28 @@ export const getAllFood = async () => {
   return await Food.find();
 };
 
-// export const deleteFood = async (name: string) => {
-//   await connectDB();
-//   const newCategory = new Category({ name });
-//   await newCategory.save();
-//   return newCategory;
-// };
+export const deleteFood = async (foodData: {
+  name: string;
+  ingredients: string;
+  price: number;
+  image: string;
+  categoryId: string;
+}) => {
+  await connectDB();
+  const newFood = new Food({ foodData });
+  await newFood.save();
+  return newFood;
+};
+
+export const updateFood = async (foodData: {
+  name: string;
+  ingredients: string;
+  price: number;
+  image: string;
+  categoryId: string;
+}) => {
+  await connectDB();
+  const updatedFood = new Food({ foodData });
+  await updatedFood.save();
+  return updatedFood;
+};
