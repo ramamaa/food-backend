@@ -1,7 +1,6 @@
 import { Category } from "@/lib/models/Category";
 import {
-  createCategory,
-  deleteCategory,
+
   getAllCategories,
 } from "@/lib/services/category-service";
 import { NextRequest, NextResponse } from "next/server";

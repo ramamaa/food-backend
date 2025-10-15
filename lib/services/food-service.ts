@@ -20,28 +20,28 @@ export const getAllFood = async () => {
   return await Food.find();
 };
 
-export const deleteFood = async (foodData: {
-  name: string;
-  ingredients: string;
-  price: number;
-  image: string;
-  categoryId: string;
-}) => {
-  await connectDB();
-  const newFood = new Food({ foodData });
-  await newFood.save();
-  return newFood;
-};
+// export const deleteFood = async (foodData: {
+//   name: string;
+//   ingredients: string;
+//   price: number;
+//   image: string;
+//   categoryId: string;
+// }) => {
+//   await connectDB();
+//   const deletedFood = await Food.findByIdAndDelete(id, {...foodData});
+  
+//   return deleteFood;
+// };
 
-export const updateFood = async (foodData: {
-  name: string;
-  ingredients: string;
-  price: number;
-  image: string;
-  categoryId: string;
-}) => {
-  await connectDB();
-  const updatedFood = new Food({ foodData });
-  await updatedFood.save();
-  return updatedFood;
-};
+// export const updateFood = async (foodData: {
+//   name: string;
+//   ingredients: string;
+//   price: number;
+//   image: string;
+//   categoryId: string;
+// }) => {
+//   await connectDB();
+//   const updatedFood = await Food.findByIdAndUpdate(id, {...foodData
+//   });
+//   return updatedFood;
+// };
