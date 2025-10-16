@@ -1,6 +1,8 @@
 import connectDB from "../mongodb";
 
-import { Food } from "../models/Food";
+import { Food, FoodSchemaType } from "../models/Food";
+import { Category } from "../models/Category";
+
 
 export const createFood = async (foodData: {
   name: string;
@@ -17,31 +19,9 @@ export const createFood = async (foodData: {
 
 export const getAllFood = async () => {
   await connectDB();
-  return await Food.find();
+  Category;
+  const allnewFood: FoodSchemaType[] = await Food.find().populate("categoryId")
+  return allnewFood;
 };
 
-// export const deleteFood = async (foodData: {
-//   name: string;
-//   ingredients: string;
-//   price: number;
-//   image: string;
-//   categoryId: string;
-// }) => {
-//   await connectDB();
-//   const deletedFood = await Food.findByIdAndDelete(id, {...foodData});
-  
-//   return deleteFood;
-// };
 
-// export const updateFood = async (foodData: {
-//   name: string;
-//   ingredients: string;
-//   price: number;
-//   image: string;
-//   categoryId: string;
-// }) => {
-//   await connectDB();
-//   const updatedFood = await Food.findByIdAndUpdate(id, {...foodData
-//   });
-//   return updatedFood;
-// };
