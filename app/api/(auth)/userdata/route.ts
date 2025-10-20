@@ -1,10 +1,8 @@
 import { UserData } from "@/lib/models/UserData";
 import connectDB from "@/lib/mongodb";
-import {
-  createUserData,
-  getAllUserData,
-} from "@/lib/services/userData-service";
+import { getAllUserData } from "@/lib/services/userData-service";
 import { NextRequest, NextResponse } from "next/server";
+import bcrypt from "bcrypt";
 
 export async function GET() {
   const userData = await getAllUserData();
@@ -18,7 +16,28 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const { email, password } = body;
 
-    const newUser = new UserData({ email, password });
+    const existedUser = await UserData.findOne({
+      email,
+    });
+    console.log(email, "email");
+    console.log(password, "password");
+
+    if (existedUser) {
+      return NextResponse.json(
+        {
+          message: "Hereglegch burtgeltei bn, Not Acceptable",
+          error: true,
+        },
+        { status: 406 }
+      );
+    }
+
+    const hashPassword = bcrypt.hashSync(password, 10);
+    const newUser = new UserData({
+      email,
+      password: hashPassword,
+      role: "USER",
+    });
     await newUser.save();
 
     return NextResponse.json(
