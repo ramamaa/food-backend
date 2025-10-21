@@ -12,3 +12,13 @@ export const createUserData = async (userData: UserDataSchemaType) => {
   await newUserData.save();
   return true;
 };
+
+export const loginUser = async (email: string, password: string) => {
+  await connectDB();
+  const user = await UserData.findOne({ email, password });
+  if (user) {
+    return true;
+  } else {
+    return false;
+  }
+};
