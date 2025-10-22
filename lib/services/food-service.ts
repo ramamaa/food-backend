@@ -3,7 +3,6 @@ import connectDB from "../mongodb";
 import { Food, FoodSchemaType } from "../models/Food";
 import { Category } from "../models/Category";
 
-
 export const createFood = async (foodData: {
   name: string;
   ingredients: string;
@@ -20,8 +19,6 @@ export const createFood = async (foodData: {
 export const getAllFood = async () => {
   await connectDB();
   Category;
-  const allnewFood: FoodSchemaType[] = await Food.find().populate("categoryId")
+  const allnewFood: FoodSchemaType[] = await Food.find().populate("categoryId");
   return allnewFood;
 };
-
-

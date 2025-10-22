@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
     if (existedUser) {
       return NextResponse.json(
         {
-          message: "Hereglegch burtgeltei bn, Not Acceptable",
+          message: "Hereglegch burtgeltei bn",
           error: true,
         },
         { status: 406 }
